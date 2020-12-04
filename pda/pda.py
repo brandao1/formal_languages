@@ -129,26 +129,28 @@ if __name__ == "__main__":
     pp = pprint.PrettyPrinter()
     print("PDA for {a^nb^n}")
     Sigma = {"a", "b"}
-    Q = {"q0", "q1", "qf"}
+    Q = {"q0", "q1", "q2", "qf"}
     q0 = "q0"
     F = {"qf"}
-    V = {"B"}
-    delta1 = { "q0" : [("a", "epsilon", "B", "q0"), ("b", "B", "epsilon", "q1"), ("?", "?", "epsilon", "qf")],
-               "q1" : [("b", "B", "epsilon", "q1"), ("?", "?", "epsilon", "qf")] }
-    w = "aabb"
+    V = {"X"}
+    delta1 = { "q0" : [("a", "epsilon", "X", "q0"), ("epsilon", "epsilon", "epsilon", "q1")],
+               "q1" : [("b", "epsilon", "X", "q2"), ("epsilon", "epsilon", "epsilon", "q2")],
+               "q2" : [("a", "X", "epsilon", "q2"), ("?", "?", "epsilon", "qf")], 
+            }
+    w = "aabbaaaa"
     pp.pprint(lifted_delta_clos([(w, "q0",[])], delta1))
-    print()
-    print("PDA for {ww^r}")
-    Sigma = {"a", "b"}
-    Q = {"q0", "q1", "qf"}
-    q0 = "q0"
-    F = {"qf"}
-    V = {"a", "b"}
-    delta1 = { "q0" : [("a", "epsilon", "a", "q0"), ("b", "epsilon", "b", "q0"),
-                       ("epsilon", "epsilon", "epsilon", "q1")],
-               "q1" : [("a", "a", "epsilon", "q1"), ("b", "b", "epsilon", "q1"),
-                       ("?", "?", "epsilon", "qf")] }
-    M = (Sigma, Q, delta1, q0, F, V)
-    w = "abba"
-    pp.pprint(lifted_delta_clos([(w, "q0", [])], delta1))
+    # print()
+    # print("PDA for {ww^r}")
+    # Sigma = {"a", "b"}
+    # Q = {"q0", "q1", "qf"}
+    # q0 = "q0"
+    # F = {"qf"}
+    # V = {"a", "b"}
+    # delta1 = { "q0" : [("a", "epsilon", "a", "q0"), ("b", "epsilon", "b", "q0"),
+    #                    ("epsilon", "epsilon", "epsilon", "q1")],
+    #            "q1" : [("a", "a", "epsilon", "q1"), ("b", "b", "epsilon", "q1"),
+    #                    ("?", "?", "epsilon", "qf")] }
+    # M = (Sigma, Q, delta1, q0, F, V)
+    # w = "abba"
+    # pp.pprint(lifted_delta_clos([(w, "q0", [])], delta1))
     
