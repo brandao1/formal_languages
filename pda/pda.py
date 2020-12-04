@@ -127,7 +127,7 @@ def lifted_delta_clos(w_q_stack_list, t_dict):
     
 if __name__ == "__main__":
     pp = pprint.PrettyPrinter()
-    print("PDA for {a^nb^n}")
+    print("PDA for {a^nb^ma^n+m}")
     Sigma = {"a", "b"}
     Q = {"q0", "q1", "q2", "qf"}
     q0 = "q0"
